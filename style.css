@@ -1,0 +1,54 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.slider-container {
+    position: relative;
+    padding: 0 40px;
+}
+
+.slide-item {
+    padding: 0 10px;
+}
+
+.slide-item img {
+    border-radius: 5px;
+    width: 100%;
+    height: auto; 
+    aspect-ratio: 16 / 9; 
+    object-fit: cover;
+}
+
+
+.custom-arrow {
+    position: absolute;
+    top: 52%;
+    transform: translateY(-50%);
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 150%;
+    z-index: 10;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.custom-arrow:focus {
+    outline: none;
+}
+
+.slick-prev {
+    left: -5px;
+}
+
+.slick-next {
+    right: -5px;
+}
+
+#pager {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #495057;
+}
