@@ -31,7 +31,7 @@ $(document).ready(function() {
 
         $pager.text('Страница ' + currentPage + ' из ' + totalPages);
     }
-
+    
     $slider.on('init', function(event, slick) {
         updatePager(slick);
     });
