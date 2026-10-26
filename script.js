@@ -1,44 +1,51 @@
-$(document).ready(function() {
-    const $slider = $('.image-slider');
-    const $pager = $('#pager');
+/*global $, document*/
+/*eslint-env browser*/
+
+(function () {
+    "use strict";
+
+    var $slider = $(".image-slider");
+    var $pager = $("#pager");
+
+    function updatePager(slick) {
+        var slidesToShow = slick.options.slidesToShow;
+        var totalSlides = slick.slideCount;
+        var currentSlide = slick.currentSlide;
+        var totalPages = Math.ceil(totalSlides - slidesToShow + 1);
+        var currentPage = currentSlide + 1;
+
+        $pager.text("Страница " + currentPage + " из " + totalPages);
+    }
 
     $slider.slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: false,
         arrows: true,
-        prevArrow: $('.slick-prev'),
-        nextArrow: $('.slick-next'),
+        infinite: false,
+        nextArrow: $(".slick-next"),
+        prevArrow: $(".slick-prev"),
         responsive: [
             {
-                breakpoint: 768, 
+                breakpoint: 768,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    slidesToShow: 1
                 }
             }
-        ]
+        ],
+        slidesToScroll: 1,
+        slidesToShow: 3
     });
 
-    
-    function updatePager(slick) {
-        const slidesToShow = slick.options.slidesToShow;
-        const totalSlides = slick.slideCount;
-        const currentSlide = slick.currentSlide;
-        
-        const totalPages = Math.ceil(totalSlides - slidesToShow + 1);
-        const currentPage = currentSlide + 1;
-
-        $pager.text('Страница ' + currentPage + ' из ' + totalPages);
-    }
-    
-    $slider.on('init', function(event, slick) {
-        updatePager(slick);
+    $slider.on("init", function (event, slick) {
+        if (event) {
+            updatePager(slick);
+        }
     });
 
-    updatePager($slider.slick('getSlick'));
+    updatePager($slider.slick("getSlick"));
 
-    $slider.on('afterChange', function(event, slick, currentSlide) {
-        updatePager(slick);
+    $slider.on("afterChange", function (event, slick) {
+        if (event) {
+            updatePager(slick);
+        }
     });
-});
+}());
